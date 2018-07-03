@@ -1,19 +1,92 @@
-<!DOCTYPE html>
-<html 	xmlns="http://www.w3c.org/1999/xhtml"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:p="http://primefaces.org/ui"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
- <h:head>
- 	<title> simple-jsf2-with-primfaces</title>
- </h:head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<!-- <h:body>
+	<p:editor/>
+	<b> Choose number : </b><p:spinner/><br/>
+	<b> Choose date : </b><p:calendar/><br/>
+</h:body> -->
+
+<h:form id="formId" >
+        <table>
+            <tr>
+                <td><h:outputLabel for="id" value="Id : " /></td>
+                <td><p:inputText id="id" value="#{userDetailsMBean.id}">
+                    <f:converter converterId="javax.faces.Integer"/>
+                    <p:ajax event="blur" update="idMsg" />
+                </p:inputText>
+                    <p:message id="idMsg" for="id" display="icon"/>
+                </td>
+            </tr>
+            <!-- <tr>
+                <td><h:outputLabel for="name" value="Name : " /></td>
+                <td><p:inputText id="name" value="#{customerMB.name}">
+                    <f:validateLength minimum="5" />
+                    <p:ajax event="blur" update="nameMsg" />
+                </p:inputText>
+                    <p:message id="nameMsg" for="name" display="icon"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="surname" value="Surname : " /></td>
+                <td><p:inputText id="surname" value="#{customerMB.surname}">
+                    <f:validateLength minimum="5" />
+                    <p:ajax event="blur" update="surnameMsg" />
+                </p:inputText>
+                    <p:message id="surnameMsg" for="surname" display="icon"/>
+                </td>
+            </tr> -->
+            <tr>
+                <td><p:commandButton id="getUser" value="GetUser" action="#{userDetailsMBean.showUser}" ajax="false"/></td>
+                <td><p:commandButton id="getAllUsers" value="GetAll" action="#{userDetailsMBean.showListUser}" ajax="false"/></td>
+                
+            </tr>
+        </table>
+    </h:form>
+    
+
+    
+    <h:form id="formInsert">
+    <p:panel id="panel" header="New User">
  
- <h:body>
+        <p:messages id="msgs" closable="true"/>
  
-	<h:outputText value="Hola JSF!!!"/>
-	
-	<p:outputLabel value="Hola PrimeFcaes"/>
- </h:body>
+        <h:panelGrid columns="3" cellpadding="5">
+            <p:outputLabel for="firstName" value="First Name:" />
+            <p:inputText id="firstName" value="#{userDetailsMBean.firstName}" required="true" label="First Name">
+                <f:validateLength minimum="2" />
+                 <p:ajax update="msgFirstname" event="keyup" />
+            </p:inputText>
+            <p:message for="firstName" id="msgFirstname" display="icon" />
  
+            <p:outputLabel for="lastName" value="Last Name:" />
+            <p:inputText id="lastName" value="#{userDetailsMBean.lastName}" label="LastName" required="true">
+                <f:validateLength minimum="2" />
+                <p:ajax update="msgLastName" event="keyup" />
+            </p:inputText>
+            <p:message for="lastName" id="msgLastName" display="icon" />
+            
+            <p:outputLabel for="email" value="Email:" />
+            <p:inputText id="email" value="#{userDetailsMBean.email}" label="Email" required="true">
+                <f:validator validatorId="custom.emailValidator" />
+                <p:ajax update="msgEmail" event="keyup" />
+            </p:inputText>
+            <p:message for="email" id="msgEmail" display="icon" />
+            
+            <p:outputLabel for="dob" value="Date of birth:" />
+            <p:inputText id="dob" value="#{userDetailsMBean.dob}" label="Date of birth" required="true">
+                <f:validateLength minimum="2" />
+                <p:ajax update="msgDob" event="keyup" />
+            </p:inputText>
+            <p:message for="dob" id="msgDob" display="icon" />
+ 
+        </h:panelGrid>
+ 
+        <p:commandButton value="Save"  action="#{userDetailsMBean.addUser}" icon="ui-icon-check" />
+    </p:panel>
+</h:form>
+    <!-- https://api.jqueryui.com/resources/icons-list.html -->
 </html>

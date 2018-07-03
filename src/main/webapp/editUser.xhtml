@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+	 <title>Edit user</title>
+        <style type="text/css">
+            .ui-widget {
+                font-size: 90%;
+            }
+        </style>
+</h:head>
+<h:body>
+    <h:form id="formEdit">
+    <p:panel id="panel" header="New User">
+ 
+        <p:messages id="msgs" closable="true"/>
+ 
+        <h:panelGrid columns="3" cellpadding="5">
+            <p:outputLabel for="firstName" value="First Name:" />
+            <p:inputText id="firstName" value="#{userDetailsMBean.firstName}" required="true" label="First Name">
+                <f:validateLength minimum="2" />
+                 <p:ajax update="msgFirstname" event="keyup" />
+            </p:inputText>
+            <p:message for="firstName" id="msgFirstname" display="icon" />
+ 
+            <p:outputLabel for="lastName" value="Last Name:" />
+            <p:inputText id="lastName" value="#{userDetailsMBean.lastName}" label="LastName" required="true">
+                <f:validateLength minimum="2" />
+                <p:ajax update="msgLastName" event="keyup" />
+            </p:inputText>
+            <p:message for="lastName" id="msgLastName" display="icon" />
+            
+            <p:outputLabel for="email" value="Email:" />
+            <p:inputText id="email" value="#{userDetailsMBean.email}" label="Email" required="true">
+                <f:validator validatorId="custom.emailValidator" />
+                <p:ajax update="msgEmail" event="keyup" />
+            </p:inputText>
+            <p:message for="email" id="msgEmail" display="icon" />
+            
+            <p:outputLabel for="dob" value="Date of birth:" />
+            <p:inputText id="dob" value="#{userDetailsMBean.dob}" label="Date of birth" required="true">
+                <f:validateLength minimum="2" />
+                <p:ajax update="msgDob" event="keyup" />
+            </p:inputText>
+            <p:message for="dob" id="msgDob" display="icon" />
+ 
+	        </h:panelGrid>
+	 
+	        <p:commandButton value="Save"  action="#{userDetailsMBean.addUser}" icon="ui-icon-check" />
+    	</p:panel>
+	</h:form>
+</h:body>
+    
+</html>
