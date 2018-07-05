@@ -3,7 +3,6 @@ package com.dlm.spring.tuto.managerBean;
 import java.util.HashMap;
 import java.util.Map;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,8 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.PrimeFaces;
-
+import org.primefaces.context.RequestContext;
 import org.springframework.dao.DataAccessException;
 
 import com.dlm.spring.tuto.model.UserDetails;
@@ -39,12 +37,37 @@ public class UserDetailsMBean implements Serializable {
 	private String dob;
 	
 	
-	 public void editUser() {
+	public String updateDiologReturn(){
+		return showListUser();
+	}
+	
+	public String updateUser(){
+		try {
+			if(userDetails!=null){
+				getUserDetailsService().updateUser(userDetails);
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User edited"));     
+	            RequestContext.getCurrentInstance().closeDialog(null);
+	            
+			}
+			else{
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User edited"));   
+				FacesContext.getCurrentInstance().getExternalContext().invalidateSession();//invalidate session in order to refresh userDetailsList
+//				return "listUsers";
+			}
+			
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+		return null;
+	}
+	
+	 public void editUser(int id) {
+		 userDetails = (UserDetails) userDetailsService.getuserDetails(id);
 	        Map<String,Object> options = new HashMap<String, Object>();
 	        options.put("resizable", false);
 	        options.put("draggable", false);
 	        options.put("modal", true);
-	        PrimeFaces.current().dialog.openDynamic("editUser", options, null);
+	        RequestContext.getCurrentInstance().openDialog("editUser", options, null);
     }
 	
 	public String deleteUser(int id){
@@ -64,6 +87,9 @@ public class UserDetailsMBean implements Serializable {
 			userDetails.setEmail(getEmail());
 			userDetails.setDob(getDob());
             getUserDetailsService().addUser(userDetails);
+            
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();//invalidate session in order to refresh userDetailsList
+            
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("User " + firstName + " " + lastName + " saved"));
             return "listUsers";
@@ -74,10 +100,13 @@ public class UserDetailsMBean implements Serializable {
 	}
 	
 	public String showListUser(){
+		
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();//invalidate session in order to refresh userDetailsList
 		return "listUsers";
 	}
 	
 	public String showUser(){
+		
 		return "userDetails";
 	}
 	

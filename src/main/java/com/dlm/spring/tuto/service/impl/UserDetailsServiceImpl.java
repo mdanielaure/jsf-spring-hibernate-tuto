@@ -44,5 +44,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		getUserDetailsDao().deleteUser(userDetails);
 		
 	}
+	
+	@Transactional
+	@Override
+	public void updateUser(UserDetails userDetails) {
+		getUserDetailsDao().updateUser(userDetails);
+		
+	}
 
 }

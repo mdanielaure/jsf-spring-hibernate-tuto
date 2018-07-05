@@ -44,9 +44,9 @@
 				<h:outputText value="#{userDetails.dob}" />
 			</h:column>
 		</h:dataTable> -->
-		
+		<p:messages id="messages" showSummary="false" showDetail="true" closable="true"/>
 		<h:form id="userTable">
-			<p:dataTable id="usersList" var="userDetails" value="#{userDetailsMBean.userDetailsList}">
+			<p:dataTable id="usersList" var="userDetails" value="#{userDetailsMBean.userDetailsList}" paginator="true" editable="true" editMode="cell" rows="5" rowsPerPageTemplate="5,10,25">
 			    <p:column headerText="ID">
 			        <h:outputText value="#{userDetails.id}" />
 			    </p:column>
@@ -70,13 +70,13 @@
 	            	
 	            	<p:commandButton icon="ui-icon-closethick" title="Delete this user" 
 	            	action="#{userDetailsMBean.deleteUser(userDetails.id)}"  ajax="false"/>
+	            	 
 	            	
-	            	
-	            	<p:growl id="growl" showDetail="true" />
+	            	<!-- <p:growl id="growl" showDetail="true" /> -->
  
-				    <p:commandButton title="Edit user" icon=" ui-icon-pencil" actionListener="#{userDetailsMBean.editUser}">
-				        <p:ajax event="dialogReturn" listener="#{userDetailsMBean.updateUser}" update="growl" />
-				    </p:commandButton>
+				   <p:commandButton title="Edit user" icon=" ui-icon-pencil" actionListener="#{userDetailsMBean.editUser(userDetails.id)}">
+				        <p:ajax event="dialogReturn" listener="#{userDetailsMBean.updateDiologReturn}" update=":userTable" />
+				    </p:commandButton> 
 	            	
 	             </p:column>
 			</p:dataTable>

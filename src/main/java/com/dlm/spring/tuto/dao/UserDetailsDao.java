@@ -13,5 +13,7 @@ public interface UserDetailsDao {
     public void addUser(UserDetails userDetails);
     
     public void deleteUser(UserDetails userDetails);
+    
+    public void updateUser(UserDetails userDetails);
 
 }

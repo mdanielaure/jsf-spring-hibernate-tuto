@@ -58,5 +58,12 @@ public class UserDetailsDaoImpl implements UserDetailsDao {
 		
 		getSessionFactory().getCurrentSession().delete(userDetails);
 	}
+    
+    @Transactional
+	@Override
+	public void updateUser(UserDetails userDetails) {
+		getSessionFactory().getCurrentSession().update(userDetails);
+		
+	}
 
 }
