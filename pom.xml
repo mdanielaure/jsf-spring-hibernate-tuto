@@ -66,8 +66,8 @@
         
         <dependency>
 			<groupId>org.primefaces.themes</groupId>
-			<artifactId>afterdark</artifactId>
-			<version>1.0.6</version>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
 		</dependency>
 
 		<!-- JSF Dependencies -->

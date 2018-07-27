@@ -1,2 +1,7 @@
-D:\Spring Projects\simple-jsf2-with-primfaces\src\main\java\com\dlm\entities\Person.java
-D:\Spring Projects\simple-jsf2-with-primfaces\src\main\java\com\dlm\modelo\negocio\Person.java
+D:\Spring Projects\jsf-spring-hibernate\src\main\java\com\dlm\spring\tuto\dao\impl\UserDetailsDaoImpl.java
+D:\Spring Projects\jsf-spring-hibernate\src\main\java\com\dlm\spring\tuto\dao\UserDetailsDao.java
+D:\Spring Projects\jsf-spring-hibernate\src\main\java\com\dlm\spring\tuto\managerBean\UserDetailsMBean.java
+D:\Spring Projects\jsf-spring-hibernate\src\main\java\com\dlm\spring\tuto\service\UserDetailsService.java
+D:\Spring Projects\jsf-spring-hibernate\src\main\java\com\dlm\spring\tuto\model\UserDetails.java
+D:\Spring Projects\jsf-spring-hibernate\src\main\java\com\dlm\spring\tuto\service\impl\UserDetailsServiceImpl.java
+D:\Spring Projects\jsf-spring-hibernate\src\main\java\com\dlm\spring\tuto\view\EmailValidator.java

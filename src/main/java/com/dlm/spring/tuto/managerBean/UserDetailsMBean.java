@@ -23,7 +23,7 @@ public class UserDetailsMBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-        //inject spring bean via DI
+    //inject spring bean via DI
 	@ManagedProperty(value="#{userDetailsService}")
 	private UserDetailsService userDetailsService;
 

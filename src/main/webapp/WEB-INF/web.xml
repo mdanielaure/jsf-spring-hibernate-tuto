@@ -22,7 +22,7 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 	
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>afterdark</param-value>
+		<param-value>glass-x</param-value>
 	</context-param>
 
 	<listener>

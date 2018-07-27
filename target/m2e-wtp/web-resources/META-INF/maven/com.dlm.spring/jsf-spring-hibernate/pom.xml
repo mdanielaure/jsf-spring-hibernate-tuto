@@ -61,13 +61,13 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>6.0</version>
+            <version>5.2</version>
         </dependency>
         
         <dependency>
 			<groupId>org.primefaces.themes</groupId>
-			<artifactId>afterdark</artifactId>
-			<version>1.0.6</version>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
 		</dependency>
 
 		<!-- JSF Dependencies -->
